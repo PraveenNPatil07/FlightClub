@@ -23,7 +23,7 @@ class DataManager:
 
     def get_destination_data(self):
         # Use the Sheety API to GET all the data in that sheet and print it out.
-        response = requests.get(url=self.prices_endpoint, auth=("PraveenNPatil", "Praveen0.7"))
+        response = requests.get(url=self.prices_endpoint, auth=(self._user, self._password))
         data = response.json()
         # Try importing pretty print and printing the data out again using pprint() to see it formatted.
         pprint(data)
@@ -42,12 +42,12 @@ class DataManager:
             response = requests.put(
                 url=f"{self.prices_endpoint}/{city['id']}",
                 json=new_data,
-                auth=("PraveenNPatil", "Praveen0.7")
+                auth=(self._user, self._password)
             )
             print(response.text)
 
     def get_customer_emails(self):
-        response = requests.get(url=self.users_endpoint, auth=("PraveenNPatil", "Praveen0.7"))
+        response = requests.get(url=self.users_endpoint, auth=(self._user, self._password))
         data = response.json()
         # See how Sheet data is formatted so that you use the correct column name!
         # pprint(data)
